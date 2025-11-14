@@ -40,7 +40,7 @@ La base de datos `preconteo` contiene las siguientes entidades principales:
 - **Corporaciones**
 - **Candidatos**
 - **Testigos**
-- **Testigo_E14s** (relación muchos-a-muchos)
+- **Testigo_E14s** (asignación de testigos a mesas)
 - **E14s** (captura de votos)
 
 ### **Relaciones clave**
@@ -57,7 +57,7 @@ La aplicación usa un **diseño de dashboard moderno**, pensado para uso en escr
 ## **Layout Principal**
 ### 🧭 Topbar
 - Logo o texto: **Preconteo Electoral**
-- Nombre de la elección (ej. “Elecciones Locales 2025”)
+- Nombre de la elección (ej. “Elecciones Congreso 2026”)
 - Selector rápido de **Corporación**
 - Menú de usuario (Perfil / Configuración / Salir)
 
