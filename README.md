@@ -1,59 +1,246 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🗳️ Sistema de Preconteo Electoral  
+Aplicación web desarrollada con **Laravel 12** y **Filament v4**, diseñada para gestionar de manera ágil, segura y estructurada los procesos de **preconteo electoral** a nivel territorial. Incluye administración completa del territorio, corporaciones, candidatos, testigos, capturas E14 y un dashboard con métricas y reportes.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+## 📌 Objetivo del Sistema  
+Ofrecer una plataforma intuitiva y moderna para la **captura, consulta y administración de resultados preliminares** en procesos electorales.  
+El sistema prioriza:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Usabilidad y claridad visual  
+- Flujo de captura guiado (wizard)  
+- Visualización de métricas y gráficos  
+- Jerarquía territorial completa  
+- Seguridad y coherencia en la entrada de datos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# 🚀 Tecnologías Utilizadas
+- **PHP 8.1+**
+- **Laravel 12**
+- **Filament v4** (Panel administrativo)
+- **MySQL/MariaDB 5.7+**
+- **Node.js + NPM**
+- Librerías de UI simples para mock de gráficas
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+# 🧩 Arquitectura Funcional
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+La base de datos `preconteo` contiene las siguientes entidades principales:
 
-## Laravel Sponsors
+### **Territorio**
+- **Departamentos**
+- **Municipios**
+- **Zonas**
+- **Puestos**
+- **Mesas**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### **Actores y Resultados**
+- **Corporaciones**
+- **Candidatos**
+- **Testigos**
+- **Testigo_E14s** (relación muchos-a-muchos)
+- **E14s** (captura de votos)
 
-### Premium Partners
+### **Relaciones clave**
+- Departamento → Municipios → Zonas → Puestos → Mesas → E14  
+- Corporaciones → Candidatos → E14  
+- Testigos ↔ E14  
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+# 🖥️ Interfaz Gráfica (UI / UX)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+La aplicación usa un **diseño de dashboard moderno**, pensado para uso en escritorio y tablets.
 
-## Code of Conduct
+## **Layout Principal**
+### 🧭 Topbar
+- Logo o texto: **Preconteo Electoral**
+- Nombre de la elección (ej. “Elecciones Locales 2025”)
+- Selector rápido de **Corporación**
+- Menú de usuario (Perfil / Configuración / Salir)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 📚 Sidebar (menú lateral)
+1. Dashboard  
+2. Territorio  
+   - Departamentos  
+   - Municipios  
+   - Zonas  
+   - Puestos  
+   - Mesas  
+3. Corporaciones y Candidatos  
+4. Testigos  
+5. Captura de Resultados (E14)  
+6. Consultas y Reportes  
 
-## Security Vulnerabilities
+### 🧩 Componentes UI incluidos
+- Tablas ordenables y paginadas  
+- Formularios validados  
+- Tarjetas de métricas  
+- Gráficos simples (mock)  
+- Estados de carga y error  
+- CRUD completo para todas las entidades  
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+# 📊 Módulos del Sistema
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## **1) Dashboard Principal**
+Incluye:
+- Tarjetas de resumen:  
+  - Mesas totales  
+  - Mesas informadas  
+  - Mesas en reconteo  
+  - Total de votos (según corporación)
+- Filtros globales en cascada  
+- Gráfico de votos por candidato  
+- Tabla comparativa por corporación  
+- Barra de progreso de preconteo  
+
+---
+
+## **2) Módulo Territorio**
+CRUD completo para:
+- Departamentos  
+- Municipios  
+- Zonas  
+- Puestos  
+- Mesas  
+
+Cada página incluye:
+- Tabla paginada  
+- Buscador  
+- Formularios validados  
+- Acciones: Ver / Editar / Eliminar  
+
+---
+
+## **3) Corporaciones y Candidatos**
+### Corporaciones
+- Tabla: ID, Nombre  
+- Formulario simple de creación/edición
+
+### Candidatos
+- Filtro por corporación  
+- Tabla: ID, nombre, corporación  
+- CRUD completo  
+
+---
+
+## **4) Testigos**
+### Gestión de Testigos
+- Tabla con buscador  
+- CRUD simple
+
+### Asignación Testigos–E14
+- Filtros territoriales  
+- Selección de mesa  
+- Listado de E14 disponibles  
+- Multi-select para asignar testigos  
+
+---
+
+## **5) Captura de Resultados (E14)**
+Flujo **tipo asistente (wizard)**:
+
+### **Paso 1: Selección Territorial**
+Selects en cascada: Depto → Municipio → Zona → Puesto → Mesa
+
+### **Paso 2: Acta**
+- Selección de corporación  
+- Bandera de “¿Es reconteo?”  
+- Generación de ID de acta (simulada)
+
+### **Paso 3: Captura**
+- Tabla editable por candidato  
+- Validación de números ≥ 0  
+- Totalizador automático  
+
+### **Paso 4: Confirmación**
+- Resumen del acta  
+- Opción de volver a editar  
+- Botón “Guardar Preconteo” (mock)
+
+### Gestión de E14
+- Página independiente  
+- Filtros territoriales y por corporación  
+- Tabla plana con todos los registros  
+
+---
+
+## **6) Consultas y Reportes**
+Incluye:
+- Filtros completos de territorio  
+- Selección de corporación  
+- Tipo de acta: Preconteo / Reconteo / Ambos
+
+### Pestañas de visualización:
+#### 📌 Resumen por candidato
+- Tabla con:  
+  - Candidato  
+  - Corporación  
+  - Total votos  
+  - % sobre total  
+
+#### 📌 Resumen por mesa
+- Tabla de mesas con totales  
+- Opción de expandir para ver detalle por candidato  
+
+Incluye gráficos simples generados con mock data.
+
+---
+
+# 🏗️ Instalación y Configuración
+
+## 1. Clonar el repositorio
+```bash
+git clone https://github.com/tu-usuario/preconteo-electoral.git
+cd preconteo-electoral
+```
+## 2. Instalar dependencias de PHP
+```bash
+composer install
+``` 
+## 3. Instalar dependencias frontend
+```bash
+npm install
+```
+## 4. Configurar el archivo .env
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+```
+Configura las variables de entorno, especialmente la conexión a la base de datos.
+
+DB_DATABASE=preconteo
+DB_USERNAME=usuario
+DB_PASSWORD=contraseña
+```
+## 5. Ejecutar migraciones
+```bash
+php artisan migrate
+```
+## 6. Compilar assets frontend
+```bash
+npm run dev
+```
+## 🤝 Contribuir
+
+```
+Los PRs son bienvenidos.
+Por favor:
+
+Usa commits descriptivos
+
+Realiza PRs pequeños y enfocados
+
+Sigue estándares de Laravel/Filament
+```
+
+## Licencia
+```
+Copyright (c) 2024.
+
+```
