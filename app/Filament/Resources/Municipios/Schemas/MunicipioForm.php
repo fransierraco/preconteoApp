@@ -14,7 +14,7 @@ class MunicipioForm
     {
         return $schema->schema([
             TextInput::make('idMunicipio')
-                ->label('Código DANE')
+                ->label('Código  municipio')
                 ->required()
                 ->maxLength(5)                       // evita overflow en UI
                 ->rule('size:5')                     // exactamente 6
@@ -29,7 +29,7 @@ class MunicipioForm
                 ->inputMode('numeric'),
 
             TextInput::make('nombreMunicipio')
-                ->label('Nombre del municipio')
+                ->label('Nombre municipio')
                 ->required()
                 ->maxLength(100)
                 ->placeholder('San José del Guaviare'),

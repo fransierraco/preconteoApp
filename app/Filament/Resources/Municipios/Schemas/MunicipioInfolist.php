@@ -15,7 +15,7 @@ class MunicipioInfolist
             ->components([
 
                 TextEntry::make('idMunicipio')
-                    ->label('Código DANE Municipio')
+                    ->label('Código Municipio')
                     ->color('success')
                     ->icon(Heroicon::ArrowDownRight)
                     ->money('COP', decimalPlaces: 2, locale: 'es_CO'),

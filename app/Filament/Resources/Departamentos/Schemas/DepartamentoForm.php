@@ -12,8 +12,10 @@ class DepartamentoForm
         return $schema
             ->components([
                 TextInput::make('idDepartamento')
+                    ->label('Código de departamento')
                     ->required(),
                 TextInput::make('nombreDepartamento')
+                    ->label('Nombre de departamento')
                     ->required(),
             ]);
     }

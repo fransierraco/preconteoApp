@@ -1,20 +1,27 @@
 <?php
 
-namespace App\Filament\Resources\Departamentos\Schemas;
+namespace App\Filament\Resources\Puestos\Schemas;
 
+use App\Models\Zona;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
-class DepartamentoInfolist
+class PuestoInfolist
 {
     public static function configure(Schema $schema): Schema
     {
         return $schema
             ->components([
-                TextEntry::make('idDepartamento')
-                    ->label('Código de departamento'),
-                TextEntry::make('nombreDepartamento')
-                    ->label('Nombre de departamento'),
+                TextEntry::make('idPuesto')
+                    ->label('Código de puesto'),
+                TextEntry::make('nombrePuesto')
+                    ->label('Nombre del puesto'),
+
+
+                TextEntry::make('zona.nombreZona')
+                    ->label('Zona'),
+
+
                 TextEntry::make('created_at')
                     ->label('Creado')
                     ->dateTime()

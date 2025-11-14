@@ -17,12 +17,12 @@ class DepartamentosTable
         return $table
             ->columns([
                 TextColumn::make('idDepartamento')
-                    ->label('Código DANE')
+                    ->label('Código de departamento')
                     ->badge()
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('nombreDepartamento')
-                    ->label('Nombre departamento')
+                    ->label('Nombre de departamento')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('created_at')
